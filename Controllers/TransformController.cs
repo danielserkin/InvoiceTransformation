@@ -1,8 +1,8 @@
-﻿using InvoiceTransformationAPI.Application.Interfaces;
+﻿using InvoiceTransformation.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InvoiceTransformationAPI.Presentation.Controllers
+namespace InvoiceTransformation.Presentation.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -15,19 +15,14 @@ namespace InvoiceTransformationAPI.Presentation.Controllers
             _transformService = transformService;
         }
 
-        //[Authorize]
-        [HttpPost("xml-to-json")]
+        [Authorize]
+        [HttpPost("document/xml-to-json")]
         public IActionResult TransformXmlToJson([FromBody] TransformRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.Xml))
-            {
-                return BadRequest(new
-                {
-                    status = "400",
-                    title = "Bad Request",
-                    detail = "The 'xml' field is required and cannot be empty."
-                });
-            }
+            var validationResult = ValidateRequest(request);
+
+            if (validationResult != null)
+                return validationResult;
 
             try
             {
@@ -36,13 +31,36 @@ namespace InvoiceTransformationAPI.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new
+                return HandleInternalServerError(ex);
+            }
+        }
+
+
+        private IActionResult ValidateRequest(TransformRequest request)
+        {
+            if (request == null || string.IsNullOrWhiteSpace(request.Xml))
+            {
+                return BadRequest(new
                 {
-                    status = "500",
-                    title = "Internal Server Error",
-                    detail = ex.Message
+                    status = "400",
+                    title = "Bad Request",
+                    detail = "The 'xml' field is required and cannot be empty.",
+                    errors = new[] { "Field 'xml' is missing or empty." }
                 });
             }
+
+            return null;
+        }
+
+        private IActionResult HandleInternalServerError(Exception exception)
+        {
+            return StatusCode(500, new
+            {
+                status = "500",
+                title = "Internal Server Error",
+                detail = exception.Message,
+                errors = new[] { "An unexpected error occurred." }
+            });
         }
     }
 
