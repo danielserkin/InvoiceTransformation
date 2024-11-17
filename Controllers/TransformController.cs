@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace InvoiceTransformation.Presentation.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class TransformController : ControllerBase
     {
@@ -15,7 +16,7 @@ namespace InvoiceTransformation.Presentation.Controllers
             _transformService = transformService;
         }
 
-        [Authorize]
+      
         [HttpPost("document/xml-to-json")]
         public IActionResult TransformXmlToJson([FromBody] TransformRequest request)
         {
