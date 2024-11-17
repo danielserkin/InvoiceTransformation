@@ -2,41 +2,41 @@
 
 API REST que permite transformar documentos XML a formato JSON, desarrollada con .NET 8 y C#.
 
-## DescripciÛn
+## Descripci√≥n
 
-Este proyecto implementa una API que transforma documentos XML (codificados en Base64) a su representaciÛn equivalente en formato JSON. La API est· protegida mediante OAuth 2.0 y sigue los principios RESTful.
+Este proyecto implementa una API que transforma documentos XML (codificados en Base64) a su representaci√≥n equivalente en formato JSON. La API est√° protegida mediante OAuth 2.0 y sigue los principios RESTful.
 
-## CaracterÌsticas Principales
+## Caracter√≠sticas Principales
 
-- TransformaciÛn de XML a JSON
-- AutenticaciÛn OAuth 2.0
-- ValidaciÛn de XML contra esquema XSD
-- DocumentaciÛn OpenAPI
+- Transformaci√≥n de XML a JSON
+- Autenticaci√≥n OAuth 2.0
+- Validaci√≥n de XML contra esquema XSD
+- Documentaci√≥n OpenAPI
 - Manejo estandarizado de errores (RFC 9457)
 
 ## Requisitos Previos
 
 - .NET SDK 8.0 o superior
 - IDE (Visual Studio 2022 recomendado)
-- Postman (para pruebas de autenticaciÛn)
+- Postman (para pruebas de autenticaci√≥n)
 
 ## Estructura del Proyecto
 
 ```
 InvoiceTransformation/
-??? InvoiceTransformation/
-?   ??? Program.cs
-??? InvoiceTransformation.Application/
-?   ??? Interfaces/
-?   ??? Services/
-??? InvoiceTransformation.Domain/
-??? InvoiceTransformation.Infrastructure/
-??? InvoiceTransformation.Presentation/
-?   ??? Controllers/
-??? InvoiceTransformation.Tests/
+    InvoiceTransformation/
+        Program.cs
+    InvoiceTransformation.Application/
+        Interfaces/
+        Services/
+    InvoiceTransformation.Domain/
+    InvoiceTransformation.Infrastructure/
+    InvoiceTransformation.Presentation/
+        Controllers/
+    InvoiceTransformation.Tests/
 ```
 
-## ConfiguraciÛn y Despliegue
+## Configuraci√≥n y Despliegue
 
 1. Clonar el repositorio
 ```bash
@@ -58,14 +58,14 @@ dotnet build
 dotnet test
 ```
 
-5. Ejecutar la aplicaciÛn
+5. Ejecutar la aplicaci√≥n
 ```bash
 dotnet run --project InvoiceTransformation.Presentation
 ```
 
 ## Uso de la API
 
-### Endpoint de TransformaciÛn
+### Endpoint de Transformaci√≥n
 
 ```http
 POST /api/transform
@@ -77,14 +77,14 @@ Authorization: Bearer [AccessToken]
 }
 ```
 
-### ConfiguraciÛn OAuth 2.0 en Postman
+### Configuraci√≥n OAuth 2.0 en Postman
 
 ```
 Grant Type: Authorization Code
 Auth URL: https://dev-otrwvksw.us.auth0.com/authorize?audience=https://invoice-transformation.cti.com
 Access Token URL: https://dev-otrwvksw.us.auth0.com/oauth/token
 Client ID: epBAbL2TSzmaJ9BL7nSGkL0MT3a42vfY
-Client Secret: [Proporcionado en la documentaciÛn]
+Client Secret: [Proporcionado en la documentaci√≥n]
 ```
 
 ### Ejemplo de Respuesta Exitosa
@@ -100,7 +100,7 @@ Client Secret: [Proporcionado en la documentaciÛn]
 
 ## Manejo de Errores
 
-La API implementa el est·ndar Problem Details (RFC 9457) para el manejo de errores:
+La API implementa el est√°ndar Problem Details (RFC 9457) para el manejo de errores:
 
 ```json
 {
@@ -111,37 +111,37 @@ La API implementa el est·ndar Problem Details (RFC 9457) para el manejo de error
 }
 ```
 
-## TecnologÌas Utilizadas
+## Tecnolog√≠as Utilizadas
 
 - .NET 8
 - C#
 - Auth0 (OAuth 2.0)
 - xUnit (Testing)
 
-## ContribuciÛn
+## Contribuci√≥n
 
-Este proyecto es parte de un reto tÈcnico y no acepta contribuciones externas.
+Este proyecto es parte de un reto t√©cnico y no acepta contribuciones externas.
 
 ## Mejoras Potenciales
 
-El proyecto actual cumple con los requerimientos b·sicos del reto tÈcnico, pero hay varias ·reas donde se podrÌa mejorar y expandir:
+El proyecto actual cumple con los requerimientos b√°sicos del reto t√©cnico, pero hay varias √°reas donde se podr√≠a mejorar y expandir:
 
 ### Dominio y Entidades
-- Implementar una capa de dominio m·s robusta con el modelo `Comprobante` como entidad principal
+- Implementar una capa de dominio m√°s robusta con el modelo `Comprobante` como entidad principal
 - Agregar value objects para conceptos como importes, identificadores fiscales, etc.
-- Implementar validaciones de dominio especÌficas del negocio
+- Implementar validaciones de dominio espec√≠ficas del negocio
 
 ### Arquitectura y Escalabilidad
-- Distribuir la lÛgica de transformaciÛn en componentes m·s pequeÒos y especializados
-- Implementar el patrÛn Repository para abstraer el acceso a datos
-- Implementar un sistema de logging m·s completo
+- Distribuir la l√≥gica de transformaci√≥n en componentes m√°s peque√±os y especializados
+- Implementar el patr√≥n Repository para abstraer el acceso a datos
+- Implementar un sistema de logging m√°s completo
 
 ### Validaciones y Seguridad
-- Implementar validaciones m·s exhaustivas del XML
+- Implementar validaciones m√°s exhaustivas del XML
 - Agregar rate limiting para proteger la API
-- Implementar polÌticas de retry para mejorar la resiliencia
-- Agregar m·s pruebas unitarias y de integraciÛn
-- Implementar validaciÛn de esquema XSD m·s robusta
+- Implementar pol√≠ticas de retry para mejorar la resiliencia
+- Agregar m√°s pruebas unitarias y de integraci√≥n
+- Implementar validaci√≥n de esquema XSD m√°s robusta
 
 
-Estas mejoras no fueron implementadas inicialmente debido a las restricciones de tiempo del reto tÈcnico, pero representan un camino claro para evolucionar la aplicaciÛn hacia una soluciÛn empresarial m·s robusta.
+Estas mejoras no fueron implementadas inicialmente debido a las restricciones de tiempo del reto t√©cnico, pero representan un camino claro para evolucionar la aplicaci√≥n hacia una soluci√≥n empresarial m√°s robusta.
