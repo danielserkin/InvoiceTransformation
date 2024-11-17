@@ -1,4 +1,5 @@
 ﻿using InvoiceTransformationAPI.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceTransformationAPI.Presentation.Controllers
@@ -14,7 +15,8 @@ namespace InvoiceTransformationAPI.Presentation.Controllers
             _transformService = transformService;
         }
 
-        [HttpPost("endpoint-name")]
+        //[Authorize]
+        [HttpPost("xml-to-json")]
         public IActionResult TransformXmlToJson([FromBody] TransformRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Xml))
