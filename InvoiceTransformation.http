@@ -1,6 +1,0 @@
-@InvoiceTransformation_HostAddress = http://localhost:5281
-
-GET {{InvoiceTransformation_HostAddress}}/transform/
-Accept: application/json
-
-###
